@@ -42,15 +42,24 @@ public class ArrayOperations {
 	 *      href="sorting algortihms">http://faculty.cs.niu.edu/~hutchins/csci241/sorting.htm</a>
 	 */
 	public int[] sort() {
+		/*
 		moveElementsToRight(numbers, 2);
-		return null;
+		*/
+		
+        for (int i = 0; i < numbers.length; i++) {
+            //i ist jene Stelle, dessen Elem evtl. vertauscht wird, fals das Vergleichselement an der Stelle j kleiner ist
+            for (int j = i+1; j < numbers.length; j++) {
+                changeElements(numbers, i , j);
+            }
+        }
+		return numbers;
 	}
 
 	/**
 	 * @return the sorted array in reverse order
 	 */
 	public int[] revertSort() {
-		return null;
+		return reverteSortedArray();
 	}
 
 	/**
@@ -152,6 +161,7 @@ public class ArrayOperations {
 		return sum;
 	}
 	
+	/*
 	private void moveElementsToRight (int[] myNumbers, int number) {
 		int[] newArray = new int[myNumbers.length + 1];
 		
@@ -165,4 +175,30 @@ public class ArrayOperations {
 		System.out.println("vorher" + Arrays.toString(myNumbers));
 		System.out.println("nachher" + Arrays.toString(newArray));
 	}
+	*/
+	
+	  public static void changeElements (int[] arr, int pos1, int pos2){
+	        //int tmp = arr[0];
+	        int tmp;
+	
+	        if (arr[pos2] < arr[pos1]) {
+	            tmp = arr[pos1];
+	            arr[pos1] = arr[pos2];
+	            arr[pos2] = tmp;
+	        }
+	    }
+	  
+		/**
+		 * @return the sorted array in reverted order.
+		 */
+		public int[] reverteSortedArray() {
+			int[] newReverted = new int[numbers.length];
+			int index = 0;
+			
+			for (int i = numbers.length - 1; i >= 0; i--) {
+				newReverted[index] = numbers[i];
+				index++;
+			}
+			return newReverted;
+		}
 }
