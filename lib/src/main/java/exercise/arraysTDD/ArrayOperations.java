@@ -25,15 +25,17 @@ public class ArrayOperations {
 
 	public void print() {
 		String myOutput = "";
-		
+
 		System.out.print("[");
 		for (int number : numbers) {
-			myOutput = myOutput + number + ", "; 
+			myOutput = myOutput + number + ", ";
 		}
+
+		// Beistrich und Leerzeichen am Schluss entfernen
 		myOutput = myOutput.substring(0, myOutput.length() - 2);
+
 		System.out.print(myOutput);
 		System.out.println("]");
-		System.out.println("");
 	}
 
 	/**
@@ -42,16 +44,16 @@ public class ArrayOperations {
 	 *      href="sorting algortihms">http://faculty.cs.niu.edu/~hutchins/csci241/sorting.htm</a>
 	 */
 	public int[] sort() {
-		/*
-		moveElementsToRight(numbers, 2);
-		*/
-		
-        for (int i = 0; i < numbers.length; i++) {
-            //i ist jene Stelle, dessen Elem evtl. vertauscht wird, fals das Vergleichselement an der Stelle j kleiner ist
-            for (int j = i+1; j < numbers.length; j++) {
-                changeElements(numbers, i , j);
-            }
-        }
+
+		for (int i = 0; i < numbers.length; i++) {
+			
+			// i ist jene Stelle, dessen Element evtl. vertauscht wird, falls das
+			// Vergleichselement an der Stelle j kleiner ist
+			for (int j = i + 1; j < numbers.length; j++) {
+				changeElements(numbers, i, j);
+			}
+		}
+				
 		return numbers;
 	}
 
@@ -68,7 +70,7 @@ public class ArrayOperations {
 	public int[] reverted() {
 		int[] newUnsorted = new int[unsorted.length];
 		int index = 0;
-		
+
 		for (int i = unsorted.length - 1; i >= 0; i--) {
 			newUnsorted[index] = unsorted[i];
 			index++;
@@ -81,13 +83,13 @@ public class ArrayOperations {
 	 * @return true if the array contains the value, false otherwise.
 	 */
 	public boolean contains(int value) {
-		
+
 		for (int number : numbers) {
 			if (number == value) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -95,13 +97,6 @@ public class ArrayOperations {
 	 * @return the average value of all elements summed up.
 	 */
 	public double average() {
-//		int sum = 0;
-//		
-//		for (int number : numbers) {
-//			sum = sum + number;
-//		}
-		
-		//return (double) sum / numbers.length;
 		return (double) sum() / numbers.length;
 	}
 
@@ -110,7 +105,7 @@ public class ArrayOperations {
 	 *         and the lowest value.
 	 */
 	public double trimmedMean() {
-		return (double) (sum() - maxValue() - minValue()) / (numbers.length - 2) ;
+		return (double) (sum() - maxValue() - minValue()) / (numbers.length - 2);
 	}
 
 	/**
@@ -118,7 +113,7 @@ public class ArrayOperations {
 	 */
 	public int maxValue() {
 		int max = 0;
-		
+
 		for (int number : numbers) {
 			if (number > max) {
 				max = number;
@@ -132,13 +127,13 @@ public class ArrayOperations {
 	 */
 	public int minValue() {
 		int min = numbers[0];
-		
+
 		for (int number : numbers) {
 			if (number < min) {
 				min = number;
 			}
 		}
-		
+
 		return min;
 	}
 
@@ -150,55 +145,38 @@ public class ArrayOperations {
 	private int someHelper(int[] tmp) {
 		return 1;
 	}
-	
+
 	private int sum() {
 		int sum = 0;
-		
+
 		for (int number : numbers) {
 			sum = sum + number;
 		}
-		
+
 		return sum;
 	}
-	
-	/*
-	private void moveElementsToRight (int[] myNumbers, int number) {
-		int[] newArray = new int[myNumbers.length + 1];
-		
-		for (int i = 0; i < newArray.length; i++) {
-			if (i == 0) {
-				newArray[i] = number;
-			} else {
-				newArray[i] = myNumbers[i - 1];
-			}
+
+	public static void changeElements(int[] arr, int pos1, int pos2) {
+		int tmp;
+
+		if (arr[pos2] < arr[pos1]) {
+			tmp = arr[pos1];
+			arr[pos1] = arr[pos2];
+			arr[pos2] = tmp;
 		}
-		System.out.println("vorher" + Arrays.toString(myNumbers));
-		System.out.println("nachher" + Arrays.toString(newArray));
 	}
-	*/
-	
-	  public static void changeElements (int[] arr, int pos1, int pos2){
-	        //int tmp = arr[0];
-	        int tmp;
-	
-	        if (arr[pos2] < arr[pos1]) {
-	            tmp = arr[pos1];
-	            arr[pos1] = arr[pos2];
-	            arr[pos2] = tmp;
-	        }
-	    }
-	  
-		/**
-		 * @return the sorted array in reverted order.
-		 */
-		public int[] reverteSortedArray() {
-			int[] newReverted = new int[numbers.length];
-			int index = 0;
-			
-			for (int i = numbers.length - 1; i >= 0; i--) {
-				newReverted[index] = numbers[i];
-				index++;
-			}
-			return newReverted;
+
+	/**
+	 * @return the sorted array in reverted order.
+	 */
+	public int[] reverteSortedArray() {
+		int[] newReverted = new int[numbers.length];
+		int index = 0;
+
+		for (int i = numbers.length - 1; i >= 0; i--) {
+			newReverted[index] = numbers[i];
+			index++;
 		}
+		return newReverted;
+	}
 }
