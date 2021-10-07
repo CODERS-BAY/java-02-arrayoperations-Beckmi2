@@ -24,18 +24,20 @@ public class ArrayOperations {
 	 */
 
 	public void print() {
-		String myOutput = "";
-
-		System.out.print("[");
+		StringBuilder stringbuilder = new StringBuilder();
+		
+		stringbuilder.append("[");
+		
 		for (int number : numbers) {
-			myOutput = myOutput + number + ", ";
+			stringbuilder.append(number);
+			stringbuilder.append(", ");
 		}
-
-		// Beistrich und Leerzeichen am Schluss entfernen
-		myOutput = myOutput.substring(0, myOutput.length() - 2);
-
-		System.out.print(myOutput);
-		System.out.println("]");
+		
+		String s = stringbuilder.substring(0, stringbuilder.length());
+		stringbuilder.delete(stringbuilder.length() - 2, stringbuilder.length());
+		stringbuilder.append("]");
+		
+		System.out.println(stringbuilder.toString());
 	}
 
 	/**
