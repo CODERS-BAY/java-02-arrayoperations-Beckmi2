@@ -33,7 +33,6 @@ public class ArrayOperations {
 			stringbuilder.append(", ");
 		}
 		
-		String s = stringbuilder.substring(0, stringbuilder.length());
 		stringbuilder.delete(stringbuilder.length() - 2, stringbuilder.length());
 		stringbuilder.append("]");
 		
